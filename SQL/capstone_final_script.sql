@@ -37,8 +37,8 @@ ORDER BY season ASC, league ASC
 
 --- ANALYSIS TABLE ---
 SELECT league, season, team_id, team_name, team_state, team_country, w, l, otl, pct, net_pts, season_rank, playoffs, conf_champs, league_champs, tax_result, federal_tax, state_tax, combined_tax, salary_cap, 
-(combined_tax * salary_cap) AS total_taxed,  (salary_cap - (combined_tax * salary_cap)) AS adjusted_cap, MIN(salary_cap - (combined_tax * salary_cap)) OVER (PARTITION BY league, season) AS true_cap,
- ((salary_cap - (combined_tax * salary_cap)) - MIN(salary_cap - (combined_tax * salary_cap)) OVER (PARTITION BY league, season)) AS cap_diff,
+(combined_tax * salary_cap) AS total_taxed,  (salary_cap - (combined_tax * salary_cap)) AS adjusted_cap, MIN(salary_cap - (combined_tax * salary_cap)) OVER (PARTITION BY league, season) AS effective_cap,
+ ((salary_cap - (combined_tax * salary_cap)) - MIN(salary_cap - (combined_tax * salary_cap)) OVER (PARTITION BY league, season)) AS eff_cap_diff,
 ROUND((((salary_cap - (combined_tax * salary_cap))  - MIN(salary_cap - (combined_tax * salary_cap)) OVER (PARTITION BY league, season)) / MIN(salary_cap - (combined_tax * salary_cap)) OVER (PARTITION BY league, season))::numeric, 3) AS pct_diff
 FROM locations
 	INNER JOIN taxes USING(team_state, team_country)
@@ -47,6 +47,21 @@ FROM locations
 WHERE league IN('NFL', 'NHL')
 ORDER BY season ASC, league ASC
 
+
+
+
+
+
+--- AVERAGES TABLE
+SELECT league, team_name, ROUND(AVG(w), 0) AS avg_w, ROUND(AVG(l), 0) AS avg_l, ROUND(AVG(otl), 0) AS avg_otl, ROUND(AVG(pct), 2) AS avg_w_pct, ROUND(AVG(net_pts), 2) AS avg_pts, 
+ROUND(AVG(season_rank), 0) AS avg_rank, ROUND(AVG(combined_tax), 3) AS avg_tax_rate, ROUND(AVG(salary_cap::numeric), 0) AS avg_cap 
+FROM locations
+	INNER JOIN taxes USING(team_state, team_country)
+	INNER JOIN teams USING(league, season, team_id, team_name)
+	INNER JOIN salary_caps USING(league, season)
+WHERE league IN('NFL', 'NHL')
+GROUP BY league, team_name
+ORDER BY league, avg_rank ASC
 
 
 
