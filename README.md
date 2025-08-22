@@ -10,18 +10,18 @@ Looking into the major sports leagues in North America on their past success and
 
 
 
-## Power BI Dashboard
+## Power BI Dashboard & Canva Presentation
+link here
 link here
 
 ## Motivation
 Having worked in the sports operations for the last 7 years, I wanted to combine my previous knowledge with a topic that is relevant to today that will stretch my mind and understanding. I decided to look at the major 4 sports leagues (MLB, NBA, NFL and NFL) but only focused on the NFL and NHL due to the MLB and NBA having greater salary cap flexibility (MLB uncapped and NBA teams can go over set cap but must pay a certain "penalty amount"). This makes financial parity more reliable to look at in the NHL and NFL.
 
 ## Questions
-1. Highest Combined Tax Percentages: Which states/provinces have the highest combined tax percentages?
-2. State Performance Rankings: Which states produce the most successful teams based on wins, playoff appearances, and championships?
-3. Tax vs Performance: Do teams in states with no income tax have higher win percentages or more championships than teams in taxed states?
-4. Effective Salary Caps: What is the effective (tax-adjusted) salary cap for each team per season, and how does it compare across seasons?
-5. Cap Disparity vs Highest-Taxed Teams: How does each team's effective salary cap compare to the team facing the highest combined state and federal taxes in the same season?
+1. Tax vs Performance: Do teams in states with no income tax have higher win percentages or more championships than teams in taxed states?
+2. Highest Combined Tax Percentages: Which states/provinces have the highest combined tax percentages? 
+3. Effective Salary Caps: What is the effective (tax-adjusted)  cap for each team per season, and how does it compare across seasons?
+4. Cap Disparity vs Highest-Taxed Teams: How does each team's effective cap compare to the team facing the highest combined taxes in the same season?
 
 
 ## Data Tables Created
@@ -99,6 +99,7 @@ Having worked in the sports operations for the last 7 years, I wanted to combine
 
 ## Problems and Hurdles
 - Some teams rebranded or relocated over the 20 year period. Team rebranded were given their most recent name. All teams were given a unique team_id so if they relocated, they still have the same team_id. Example would be Atlanta Thrashers relocating to Winnipeg as the Winnipeg Jets. Their team_id over the 20 years were WPJE
+- Data gathering and clean took substantial amount of time. Different leagues and seasons on multiple pages and tax information was tedious to track down for 50 stats and 9 provinces for 20 different years when tax information changes
 
 - ## Technologies Used
 1. Excel - Data was scattered across the internet and had to be cleaned through excel in order to get accurate numbers and find like minded keys to match on later one when using SQL
@@ -129,4 +130,4 @@ Having worked in the sports operations for the last 7 years, I wanted to combine
 
 
 ## Conclusion
-From the 20 years of data provided, there is no clear indication that teams located in non-income tax states have won more. However, the data does suggest that teams in non-income tax states do have more financial flexability which, in turn, could lead to the team being more competive if they spend that "extra" money on the right players
+From the 20 years of data provided, there is no correlation that NFL Teams in Non-Income taxed states are more competative, however there is evidence that the NHL does.The data also shows that non state income taxed teams have "more money" to spend than state income taxed teams. This *could* lead to a team being more competative if they spend that extra money on the right players.Based on the last 10 years in the NHL, 6 of the league champions are from non income taxed states.
